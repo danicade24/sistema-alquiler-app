@@ -1,0 +1,148 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.client-form {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  margin: 3rem 1rem 1rem;
+  background-color: #1e1e1e;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+
+.client-form input, textarea{
+    padding: 0.5rem;
+    margin: 1rem 1rem 0;
+    border: 1px solid #ccc;
+    width: 500px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    background-color: #2a2a2a;
+    transition: border-color 0.3s;
+}
+
+.client-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.client-form button {
+  padding: 0.75rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+}
+
+.client-form button:hover {
+  background-color: #005fcc;
+}
+
+.client-form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0,5rem;
+}
+
+.form-group label {
+  width: 400px;
+  margin-right: 2rem;
+  font-weight: 500;
+  text-align: left;
+}
+
+.form-group input {
+  flex: 1;
+  padding: 0.5rem;
+  height: 1.5rem; /* esto asegura que todos tengan la misma altura */
+}
+
+.form-group.vertical label{
+  margin-bottom: 1rem;
+  align-self: flex-start;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  border-color: #007bff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+.table th, .table td {
+  padding: 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  background-color: #2a2a2a;
+  color: #007bff;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.table td {
+  color: #fff;
+}
+
+.table tr:hover th {
+  background-color: #005fcc;
+  color: #fff;
+}
+
+.table tr:hover td {
+  background-color: #007bff;
+}
