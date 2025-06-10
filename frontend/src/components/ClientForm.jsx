@@ -72,27 +72,27 @@ function ClientForm() {
         <form className="client-form" onSubmit={handleSubmit}>
             <div className="form-group">
                 <label>
-                    Nombre:
-                    <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                    Nombre
                 </label>
+                    <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} />
             </div>
             <div className="form-group">
             <label>
-                Apellido: 
-                <input id="lastName" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                Apellido
             </label>
+                <input id="lastName" type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} />
             </div>
             <div className="form-group">
                 <label>
-                    DNI: 
+                    DNI
+                </label>
                     <input id="dni" type="text" value={dni} onChange={(e) => setDni(e.target.value)} />
-                </label>
             </div>
             <div className="form-group">
                 <label>
-                    Celular: 
-                    <input id="cellphone" type="tel" value={cellphone} onChange={(e) => setCellphone(e.target.value)} />
+                    Celular 
                 </label>
+                    <input id="cellphone" type="tel" value={cellphone} onChange={(e) => setCellphone(e.target.value)} />
             </div>
             {/* <div className="form-group vertical">
                 <label htmlFor="direccion">
@@ -102,27 +102,27 @@ function ClientForm() {
             </div> */}
             <div className="form-group">
                 <label>
-                    Dirección de Alquiler: 
+                    Dirección de Alquilar 
+                </label>
                     <input id="rentalAddress" type="text" value={rentalAddress} onChange={(e) => setRentalAddress(e.target.value)} />
-                </label>
             </div>
             <div className="form-group">
                 <label>
-                    Días a alquilar: 
+                    Días a alquilar
+                </label>
                     <input id="days" type="number" value={days} onChange={(e) => setDays(e.target.value)} />
-                </label>
             </div>
             <div className="form-group">
                 <label>
-                    Fecha de Alquiler:
+                    Fecha de Alquiler
+                </label>
                     <input id="rentalDate" type="date" value={rentalDate} onChange={(e) => setRentalDate(e.target.value)} />
-                </label>
             </div>
             <div className="form-group">
                 <label>
-                    Fecha de Devolucion:
-                    <input id="returnDate" type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} readOnly/>
+                    Fecha de Devolucion
                 </label>
+                    <input id="returnDate" type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} readOnly/>
             </div>
             <button type="submit">Registrar</button>
         </form>

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 function ClientList() {
+    const navigate = useNavigate();
     const [clients, setClients] = useState([]);
     const [loading, setLoading] = useState(true);   //maneja estado de carga
     const [error, setError] = useState(null);
@@ -39,6 +43,23 @@ function ClientList() {
         return <p>Error al obtener los clientes: {error}</p>;
     }
 
+    const handleEditar = (id) => {
+        navigate(`/editar-cliente/${id}`);
+    }
+
+    const handleEliminar = async (id) => {
+        if (window.confirm('¿Estás seguro de eliminar este cliente?')) {
+            try {
+                await fetch(`http://localhost:5000/api/clientes/${id}`, {
+                    method: 'DELETE',
+                });
+                setClients(clients.filter(client => client.id !== id));
+            } catch (err) {
+                console.error('Error al eliminar el cliente', err);
+            }
+        }
+    };
+
     return (
         <div>
             <table className="table">
@@ -51,6 +72,7 @@ function ClientList() {
                         <th>Dirección de Alquiler</th>
                         <th>Día de Alquiler</th>
                         <th>Día de Devolución</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,6 +85,20 @@ function ClientList() {
                             <td>{client.direccion}</td>
                             <td>{client.fecha_alquiler}</td>
                             <td>{client.fecha_devolucion}</td>
+                            <td>
+                                <button className="btn btn-link text-primary me-2"
+                                    onClick={() => handleEditar(client.id)}
+                                    title="Editar"
+                                >
+                                    <FontAwesomeIcon icon={faEdit} /> 
+                                </button>
+                                <button className="btn btn-link text-danger"
+                                    onClick={() => handleEliminar(client.id)}
+                                    title="Eliminar"
+                                    >
+                                    <FontAwesomeIcon icon={faTrashAlt} /> 
+                                </button>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

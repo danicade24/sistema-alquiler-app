@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import './App.css'
 import ClientForm from './components/ClientForm'
 import ClientList from './components/ClientList'
+import ClientEdit from './components/ClientEdit'
 
 function App() {
   return (
@@ -32,6 +33,12 @@ function App() {
               <>
                 <h1>Lista de Clientes</h1>
                 <ClientList />
+              </>
+            } />
+            <Route path="/editar-cliente/:id" element={
+              <>
+                <h1>Editar Cliente</h1>
+                <ClientEdit />
               </>
             } />
           </Routes>
