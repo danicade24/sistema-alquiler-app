@@ -13,23 +13,53 @@ function ClientForm() {
     const [returnDate, setReturnDate] = useState("");
 
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const client = {
-            name,
-            lastName,
-            dni,
-            cellphone,
-            rentalAddress,
-            days,
-            rentalDate,
-            returnDate
+            nombre: name,
+            apellido: lastName,
+            dni: dni,
+            celular: cellphone,
+            direccion: rentalAddress,
+            fecha_alquiler: rentalDate,
+            fecha_devolucion: returnDate,
+            dias: parseInt(days),
         };
-        console.log("Cliente registrado: ", client);
-        alert("Cliente registrado");
+
+        try {
+            //conectamos con el backend
+            const response = await fetch("http://localhost:5000/api/clientes", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(client),
+            });
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || "Error del servidor");
+            }
+
+            alert(data.message);
+
+            // limpiamos el formulario
+            setName("");
+            setLastName("");
+            setDni("");
+            setCellphone("");
+            setRentalAddress("");
+            setDays("");
+            setRentalDate(currentDay);
+            setReturnDate("");
+        } catch (error) {
+            console.error("Error al crear el cliente:", error);
+            alert("Error al crear el cliente");
+        }
     }
 
+    //se usa para calcular la fecha de devolucion
     useEffect(() => {
         if (days && rentalDate) {
             const date = new Date(rentalDate);

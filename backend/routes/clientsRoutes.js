@@ -33,7 +33,11 @@ router.post('/', async (req, res) => {
             'INSERT INTO clientes (nombre, apellido, dni, celular, direccion, fecha_alquiler, fecha_devolucion, dias) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *', 
             [nombre, apellido, dniParsed, celular, direccion, fecha_alquiler, fecha_devolucion, diasParsed]
         );
-        res.status(201).json(result.rows[0]);
+        res.status(201).json({
+            message: "Cliente registrado exitosamente",
+            cliente: result.rows[0]
+        });
+        // res.status(201).json(result.rows[0]);
     } catch (err) {
         console.error('Error al insertar el cliente', err.message);
         res.status(500).send('Error en el servidor');

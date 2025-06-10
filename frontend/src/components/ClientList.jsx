@@ -2,14 +2,42 @@ import { useEffect, useState } from "react";
 
 function ClientList() {
     const [clients, setClients] = useState([]);
+    const [loading, setLoading] = useState(true);   //maneja estado de carga
+    const [error, setError] = useState(null);
 
     useEffect(() =>{
-        const simulatedData = [
-            { id: 1, name: "Juan", dni: "12345678", cellphone: "987654321", rentalAddress: "Calle 123", rentalDay: "2022-01-01", returnDay: "2022-01-05" },
-            { id: 2, name: "Ana", dni: "87654321", cellphone: "912345678" , rentalAddress: "Calle 456", rentalDay: "2022-01-02", returnDay: "2022-01-06" },
-        ];
-        setClients(simulatedData);
+        const fetchClients = async () => {
+            try {
+                const response = await fetch("http://localhost:5000/api/clientes");
+                if(!response.ok){
+                    throw new Error('Error al obtener los clientes');
+                }
+                const data = await response.json();
+                // Convertir las fechas antes de actualizar el estado
+                const updatedClients = data.map(client => {
+                    return {
+                        ...client,
+                        fecha_alquiler: new Date(client.fecha_alquiler).toISOString().split('T')[0],
+                        fecha_devolucion: new Date(client.fecha_devolucion).toISOString().split('T')[0]
+                    };
+                });
+                setClients(updatedClients);
+            } catch (err) {
+                setError(err.message);
+                console.error("Error fetching clientes", err);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchClients();
     }, []);
+
+    if (loading) {
+        return <p>Cargando clientes...</p>;
+    }
+    if (error) {
+        return <p>Error al obtener los clientes: {error}</p>;
+    }
 
     return (
         <div>
@@ -26,15 +54,15 @@ function ClientList() {
                     </tr>
                 </thead>
                 <tbody>
-                    {clients.map((client) => (
+                    {clients.map((client) => ( 
                         <tr key={client.id}>
                             <td>{client.id}</td>
-                            <td>{client.name}</td>
+                            <td>{client.nombre}</td>
                             <td>{client.dni}</td>
-                            <td>{client.cellphone}</td>
-                            <td>{client.rentalAddress}</td>
-                            <td>{client.rentalDay}</td>
-                            <td>{client.returnDay}</td>
+                            <td>{client.celular}</td>
+                            <td>{client.direccion}</td>
+                            <td>{client.fecha_alquiler}</td>
+                            <td>{client.fecha_devolucion}</td>
                         </tr>
                     ))}
                 </tbody>

@@ -1,8 +1,11 @@
 const express = require('express');
 const clientsRoutes = require('./routes/clientsRoutes');
+const cors = require('cors');
 
 const app = express();
 const PORT = 5000;
+
+app.use(cors());
 
 //middleware para manejar json
 app.use(express.json());
