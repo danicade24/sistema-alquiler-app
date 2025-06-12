@@ -3,6 +3,7 @@ import './App.css'
 import ClientForm from './components/ClientForm'
 import ClientList from './components/ClientList'
 import ClientEdit from './components/ClientEdit'
+import GeneratePDF from './components/GeneratePDF'
 
 function App() {
   return (
@@ -39,6 +40,12 @@ function App() {
               <>
                 <h1>Editar Cliente</h1>
                 <ClientEdit />
+              </>
+            } />
+            <Route path="/generar-pdf/:id" element={
+              <>
+                <h1>Generar PDF</h1>
+                <GeneratePDF />
               </>
             } />
           </Routes>
